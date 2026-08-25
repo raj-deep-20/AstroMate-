@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(3, 0, 30, 0.9);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(236, 56, 188, 0.4);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(236, 56, 188, 0.6);
+}
+
+/* Markdown prose output styles */
+.prose h1, .prose h2, .prose h3 {
+  font-family: 'Cinzel', serif;
+  color: #f1c40f;
+  font-weight: 600;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+.prose h1 { font-size: 1.5rem; }
+.prose h2 { font-size: 1.25rem; }
+.prose h3 { font-size: 1.1rem; }
+.prose p {
+  margin-bottom: 0.75rem;
+  line-height: 1.6;
+  color: #e2e8f0;
+}
+.prose ul {
+  list-style-type: none;
+  padding-left: 0;
+  margin-bottom: 0.75rem;
+}
+.prose li {
+  margin-bottom: 0.4rem;
+  padding-left: 1.5rem;
+  position: relative;
+}
+.prose li::before {
+  content: "✦";
+  color: #ec38bc;
+  position: absolute;
+  left: 0;
+}
+.prose strong {
+  color: #ffffff;
+  font-weight: 600;
+}
+.prose em {
+  color: #a78bfa;
+}
