@@ -91,8 +91,8 @@ export default function Dashboard() {
 
       {/* Footer */}
       <footer className="text-center py-6 border-t border-white/5 text-xs text-slate-500 space-y-1">
-        <p>© 2026 AstroMate. Powered by Gemini Generative AI and React.</p>
-        <p>Aligning algorithms with celestial calculations.</p>
+        <p>© 2026 AstroMate.</p>
+        <p>Know your astrology today.</p>
       </footer>
     </div>
   );
