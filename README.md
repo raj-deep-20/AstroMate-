@@ -75,6 +75,14 @@ PORT=8000
 HOST=127.0.0.1
 ```
 
+For a deployed frontend, set the Vite environment variable to the deployed backend URL:
+```env
+VITE_API_URL=https://your-backend-name.onrender.com
+```
+Set this in the frontend host's environment settings before building or redeploying. Do not include a trailing slash.
+
+The included `render.yaml` configures the backend to listen on Render's assigned port. If configuring Render manually, use `backend` as the root directory, `pip install -r requirements.txt` as the build command, and `python -m uvicorn main:app --host 0.0.0.0 --port $PORT` as the start command.
+
 ### 3. Run the Application
 ```bash
 python run.py

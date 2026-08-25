@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { marked } from 'marked';
+import { API_BASE_URL } from '../config';
 
 const zodiacs = [
   { name: 'Aries', symbol: '♈', date: 'Mar 21 - Apr 19', color: 'from-red-500 to-orange-500' },
@@ -31,7 +32,7 @@ export default function ZodiacTab() {
     const today = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
 
     try {
-      const response = await fetch('http://127.0.0.1:8000/api/horoscope', {
+      const response = await fetch(`${API_BASE_URL}/api/horoscope`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

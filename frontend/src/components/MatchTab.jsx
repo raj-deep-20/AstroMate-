@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { marked } from 'marked';
+import { API_BASE_URL } from '../config';
 
 const signs = [
   'Aries', 'Taurus', 'Gemini', 'Cancer',
@@ -25,7 +26,7 @@ export default function MatchTab() {
     setHasSubmitted(true);
 
     try {
-      const response = await fetch('http://127.0.0.1:8000/api/compatibility', {
+      const response = await fetch(`${API_BASE_URL}/api/compatibility`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

@@ -15,6 +15,7 @@ build/
 node_modules/
 .cache/
 dist/
+frontend/.env
 .DS_Store
 
 # IDE / Editor
