@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import {
-
+  Menu,
+  X,
 } from "lucide-react"
 
 function AnimatedStat({ value, suffix = "", label, delay = 0 }) {
@@ -152,7 +153,7 @@ export default function LandingPage({ onEnter }) {
               href="#testimonials"
               className="hover:text-purple-700 transition-colors"
             >
-              Stories
+              Reviews
             </a>
           </div>
 
@@ -160,7 +161,7 @@ export default function LandingPage({ onEnter }) {
             {/* CTA */}
             <button
               onClick={onEnter}
-              className="px-4 md:px-5 py-2.5 rounded-xl bg-[#33256e] hover:bg-[#4a3598] text-white text-sm font-semibold shadow-lg shadow-purple-300/40 transition-all duration-300 hover:-translate-y-0.5"
+              className="hidden sm:block px-4 md:px-5 py-2.5 rounded-xl bg-[#33256e] hover:bg-[#4a3598] text-white text-sm font-semibold shadow-lg shadow-purple-300/40 transition-all duration-300 hover:-translate-y-0.5"
             >
               Enter the Cosmos
             </button>
@@ -172,7 +173,7 @@ export default function LandingPage({ onEnter }) {
               onClick={() => setIsMenuOpen((open) => !open)}
               className="md:hidden w-11 h-11 rounded-xl border border-slate-200 bg-white text-[#33256e] flex items-center justify-center shadow-sm"
             >
-              <i className={`fa-solid ${isMenuOpen ? "fa-xmark" : "fa-bars"}`} />
+              {isMenuOpen ? <X size={20} aria-hidden="true" /> : <Menu size={20} aria-hidden="true" />}
             </button>
           </div>
         </div>
@@ -194,6 +195,16 @@ export default function LandingPage({ onEnter }) {
                 {label}
               </a>
             ))}
+            <button
+              type="button"
+              onClick={() => {
+                setIsMenuOpen(false);
+                onEnter();
+              }}
+              className="mt-2 w-full rounded-xl bg-[#33256e] px-4 py-3 text-left text-sm font-semibold text-white shadow-lg shadow-purple-200/50"
+            >
+              Enter the Cosmos
+            </button>
           </div>
         )}
       </nav>

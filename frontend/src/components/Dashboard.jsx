@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ZodiacTab from './ZodiacTab';
 import BirthChartTab from './BirthChartTab';
 import MatchTab from './MatchTab';
 import ChatTab from './ChatTab';
-import { Heart, MessageCircle, Orbit, Sun } from 'lucide-react';
+import { Heart, Menu, MessageCircle, Orbit, Sun, X } from 'lucide-react';
 
 const tabs = [
   { route: '/horoscope', label: 'Daily Horoscope', icon: Sun },
@@ -14,6 +14,7 @@ const tabs = [
 
 export default function Dashboard({ route, onNavigate }) {
   const activeTab = tabs.find((tab) => tab.route === route) || tabs[0];
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const renderTabContent = () => {
     switch (activeTab.route) {
@@ -33,16 +34,46 @@ export default function Dashboard({ route, onNavigate }) {
   return (
     <div className="relative z-10 min-h-screen flex flex-col px-4 py-6 md:px-8 max-w-6xl mx-auto animate-fadeIn text-[#17152b]">
       {/* Header */}
-      <header className="flex items-center justify-between gap-4 py-1 md:py-5">
+      <header className="flex items-center justify-between gap-3 py-1 md:py-5">
         <button type="button" onClick={() => onNavigate('/')} className="flex items-center gap-3 text-left">
           <div className="w-10 h-10 rounded-full bg-[#191733] text-[#f6c65b] flex items-center justify-center text-xl shadow-lg"><img src="/assests/logo.png" alt="AstroMate Logo" className="w-8 h-8" /></div>
-          <span className="font-serif text-2xl font-bold tracking-wide">AstroMate</span>
+          <span className="font-serif text-xl sm:text-2xl font-bold tracking-wide">AstroMate</span>
         </button>
-        <div className="inline-flex items-center space-x-2 border border-purple-100 bg-white px-4 py-1.5 rounded-full text-xs text-purple-700 tracking-wide uppercase font-semibold mb-3 shadow-sm">
+        <div className="hidden sm:inline-flex items-center space-x-2 border border-purple-100 bg-white px-4 py-1.5 rounded-full text-xs text-purple-700 tracking-wide uppercase font-semibold mb-3 shadow-sm">
           <span>✦ AstroMate AI Dashboard ✦</span>
         </div>
-        <button type="button" onClick={() => onNavigate('/')} className="hidden md:block text-sm font-semibold text-[#33256e] hover:text-[#7c4db8]">Back to home</button>
+        <div className="flex items-center gap-2">
+          <button type="button" onClick={() => onNavigate('/')} className="hidden md:block text-sm font-semibold text-[#33256e] hover:text-[#7c4db8]">Back to home</button>
+          <button
+            type="button"
+            aria-label="Toggle dashboard menu"
+            aria-expanded={isMenuOpen}
+            onClick={() => setIsMenuOpen((open) => !open)}
+            className="md:hidden flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 bg-white text-[#33256e] shadow-sm"
+          >
+            {isMenuOpen ? <X size={20} aria-hidden="true" /> : <Menu size={20} aria-hidden="true" />}
+          </button>
+        </div>
       </header>
+
+      {isMenuOpen && (
+        <nav aria-label="Mobile AstroMate tools" className="mb-4 rounded-2xl border border-purple-100 bg-white p-3 shadow-xl md:hidden">
+          <button type="button" onClick={() => { setIsMenuOpen(false); onNavigate('/'); }} className="mb-2 block w-full rounded-xl px-4 py-3 text-left text-sm font-semibold text-[#33256e] hover:bg-purple-50">
+            Back to home
+          </button>
+          {tabs.map((tab) => (
+            <button
+              key={tab.route}
+              type="button"
+              onClick={() => { setIsMenuOpen(false); onNavigate(tab.route); }}
+              className={`flex w-full items-center gap-3 rounded-xl px-4 py-3 text-left text-sm font-medium ${activeTab.route === tab.route ? 'bg-[#33256e] text-white' : 'text-slate-600 hover:bg-purple-50 hover:text-purple-700'}`}
+            >
+              <tab.icon aria-hidden="true" size={17} strokeWidth={2.2} />
+              <span>{tab.label}</span>
+            </button>
+          ))}
+        </nav>
+      )}
 
       <div className="text-center pb-5">
         <h1 className="font-serif text-4xl md:text-5xl text-transparent bg-clip-text bg-gradient-to-r from-[#39267d] via-[#7c4db8] to-[#d276a4] tracking-wide font-extrabold">Your cosmic workspace</h1>
@@ -52,7 +83,7 @@ export default function Dashboard({ route, onNavigate }) {
       {/* Main Content */}
       <main className="flex-1 my-6">
         {/* Tabs Navigation */}
-        <nav aria-label="AstroMate tools" className="flex flex-wrap justify-center gap-2 border-b border-purple-100 pb-4 mb-8">
+        <nav aria-label="AstroMate tools" className="hidden md:flex flex-wrap justify-center gap-2 border-b border-purple-100 pb-4 mb-8">
           {tabs.map((tab) => (
             <button
               key={tab.route}
