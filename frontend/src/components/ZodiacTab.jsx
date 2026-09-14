@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { marked } from 'marked';
-import { API_BASE_URL } from '../config';
+import { CircleX, LoaderCircle } from 'lucide-react';
+import { requestJson } from '../config';
 
 const zodiacs = [
   { name: 'Aries', symbol: '♈', date: 'Mar 21 - Apr 19', color: 'from-red-500 to-orange-500' },
@@ -32,19 +33,10 @@ export default function ZodiacTab() {
     const today = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
 
     try {
-      const response = await fetch(`${API_BASE_URL}/api/horoscope`, {
+      const data = await requestJson('/api/horoscope', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ sign, date: today })
+        body: JSON.stringify({ sign, date: today }),
       });
-
-      if (!response.ok) {
-        throw new Error('Cosmic interference detected');
-      }
-
-      const data = await response.json();
       const htmlReading = marked.parse(data.reading);
       setReading(htmlReading);
     } catch (err) {
@@ -57,8 +49,8 @@ export default function ZodiacTab() {
   return (
     <div className="space-y-8 animate-fadeIn">
       <div className="text-center max-w-xl mx-auto space-y-2">
-        <h2 className="text-3xl font-serif text-cosmic-gold">Select Your Zodiac Sign</h2>
-        <p className="text-slate-300">Click on your sun sign to reveal your current celestial energies, love alignments, and financial horoscopes.</p>
+        <h2 className="text-3xl text-[#36256e] font-serif font-bold tracking-tight">Select Your Zodiac Sign</h2>
+        <p className="text-slate-500">Click on your sun sign to reveal your current celestial energies, love alignments, and financial horoscopes.</p>
       </div>
 
       {/* Zodiac Grid */}
@@ -67,43 +59,43 @@ export default function ZodiacTab() {
           <button
             key={zodiac.name}
             onClick={() => handleSelect(zodiac.name)}
-            className="zodiac-card group relative p-5 rounded-2xl border border-white/10 bg-white/5 hover:bg-white/10 hover:border-cosmic-accent/50 transition-all duration-300 flex flex-col items-center justify-center text-center overflow-hidden active:scale-95"
+            className="zodiac-card group relative p-5 rounded-2xl border border-slate-100 bg-white shadow-sm hover:shadow-lg hover:border-purple-200 transition-all duration-300 flex flex-col items-center justify-center text-center overflow-hidden active:scale-95"
           >
             <div className={`absolute inset-0 bg-gradient-to-br ${zodiac.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300 pointer-events-none`}></div>
-            <span className="text-4xl mb-2 text-cosmic-gold group-hover:scale-110 transition-transform duration-300">{zodiac.symbol}</span>
-            <span className="font-serif font-semibold text-lg text-slate-100">{zodiac.name}</span>
-            <span className="text-xs text-slate-400 mt-1">{zodiac.date}</span>
+            <span className="text-4xl mb-2 text-[#d79b2b] group-hover:scale-110 transition-transform duration-300">{zodiac.symbol}</span>
+            <span className="font-serif font-semibold text-lg text-[#17152b]">{zodiac.name}</span>
+            <span className="text-xs text-slate-500 mt-1">{zodiac.date}</span>
           </button>
         ))}
       </div>
 
       {/* Result Output */}
       {selectedSign && (
-        <div className="max-w-3xl mx-auto border border-white/10 bg-white/5 backdrop-blur-md rounded-3xl p-6 sm:p-8 space-y-6 relative overflow-hidden">
-          <div className="absolute -right-16 -top-16 w-32 h-32 bg-cosmic-accent/20 rounded-full blur-3xl pointer-events-none"></div>
-          <div className="absolute -left-16 -bottom-16 w-32 h-32 bg-cosmic-gold/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div className="max-w-3xl mx-auto border border-slate-100 bg-white rounded-3xl p-6 sm:p-8 space-y-6 relative overflow-hidden shadow-sm">
+          <div className="absolute -right-16 -top-16 w-32 h-32 bg-purple-200/40 rounded-full blur-3xl pointer-events-none"></div>
+          <div className="absolute -left-16 -bottom-16 w-32 h-32 bg-amber-100/70 rounded-full blur-3xl pointer-events-none"></div>
 
-          <div className="flex items-center justify-between border-b border-white/10 pb-4">
+          <div className="flex items-center justify-between border-b border-slate-100 pb-4">
             <div className="flex items-center space-x-3">
-              <span className="text-4xl text-cosmic-gold">
+              <span className="text-4xl text-[#d79b2b]">
                 {zodiacs.find(z => z.name === selectedSign)?.symbol || '🌟'}
               </span>
               <div>
-                <h3 className="font-serif text-2xl text-white">{selectedSign}</h3>
-                <p className="text-xs text-slate-400">
+                <h3 className="font-serif text-2xl text-[#17152b]">{selectedSign}</h3>
+                <p className="text-xs text-slate-500">
                   {new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
                 </p>
               </div>
             </div>
-            <button onClick={() => setSelectedSign(null)} className="text-slate-400 hover:text-white transition-colors">
-              <i className="fa-solid fa-times text-xl"></i>
+            <button onClick={() => setSelectedSign(null)} className="text-slate-400 hover:text-[#33256e] transition-colors" aria-label="Close horoscope">
+              <CircleX className="h-5 w-5" aria-hidden="true" />
             </button>
           </div>
 
           {loading && (
             <div className="flex flex-col items-center justify-center py-12 space-y-3">
-              <i className="fa-solid fa-circle-notch fa-spin text-3xl text-cosmic-accent"></i>
-              <span className="text-sm text-slate-400 font-serif">Consulting the alignment of the stars...</span>
+              <LoaderCircle className="h-8 w-8 animate-spin text-[#7c4db8]" aria-label="Loading horoscope" />
+              <span className="text-sm text-slate-500 font-serif">Consulting the alignment of the stars...</span>
             </div>
           )}
 
@@ -115,7 +107,7 @@ export default function ZodiacTab() {
 
           {reading && (
             <div 
-              className="prose max-w-none text-slate-200"
+              className="prose max-w-none"
               dangerouslySetInnerHTML={{ __html: reading }}
             />
           )}

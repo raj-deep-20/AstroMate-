@@ -2,25 +2,93 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  background: #f8f7fc;
+  color: #17152b;
+  font-family: 'Inter', sans-serif;
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-down {
+  from { opacity: 0; transform: translateY(-12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes tab-enter {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes cosmic-drift {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(3deg); }
+}
+
+.animate-fade-up,
+.animate-fade-down,
+.animate-tab-enter {
+  animation-fill-mode: both;
+}
+
+.animate-fade-up { animation: fade-up 650ms cubic-bezier(0.22, 1, 0.36, 1); }
+.animate-fade-down { animation: fade-down 550ms cubic-bezier(0.22, 1, 0.36, 1); }
+.animate-fade-up-delay-1 { animation: fade-up 650ms 100ms both cubic-bezier(0.22, 1, 0.36, 1); }
+.animate-fade-up-delay-2 { animation: fade-up 650ms 180ms both cubic-bezier(0.22, 1, 0.36, 1); }
+.animate-fade-up-delay-3 { animation: fade-up 650ms 260ms both cubic-bezier(0.22, 1, 0.36, 1); }
+.animate-fade-up-delay-4 { animation: fade-up 650ms 340ms both cubic-bezier(0.22, 1, 0.36, 1); }
+.animate-tab-enter { animation: tab-enter 420ms cubic-bezier(0.22, 1, 0.36, 1); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .animate-fade-up:nth-child(odd) { animation-duration: 720ms; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 1ms !important;
+  }
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid rgba(124, 77, 184, 0.28);
+  outline-offset: 2px;
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: rgba(3, 0, 30, 0.9);
+  background: #f1eff8;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(236, 56, 188, 0.4);
+  background: rgba(124, 77, 184, 0.4);
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(236, 56, 188, 0.6);
+  background: rgba(124, 77, 184, 0.6);
 }
 
 /* Markdown prose output styles */
 .prose h1, .prose h2, .prose h3 {
   font-family: 'Cinzel', serif;
-  color: #f1c40f;
+  color: #33256e;
   font-weight: 600;
   margin-top: 1rem;
   margin-bottom: 0.5rem;
@@ -31,7 +99,7 @@
 .prose p {
   margin-bottom: 0.75rem;
   line-height: 1.6;
-  color: #e2e8f0;
+  color: #475569;
 }
 .prose ul {
   list-style-type: none;
@@ -45,14 +113,14 @@
 }
 .prose li::before {
   content: "✦";
-  color: #ec38bc;
+  color: #7c4db8;
   position: absolute;
   left: 0;
 }
 .prose strong {
-  color: #ffffff;
+  color: #17152b;
   font-weight: 600;
 }
 .prose em {
-  color: #a78bfa;
+  color: #7c4db8;
 }

@@ -67,12 +67,16 @@ def generate_gemini_content(prompt: str, system_instruction: str = None) -> str:
         )
     
     try:
-        # Use gemini-2.5-flash for maximum stability and speed
+        # Keep responses bounded so the UI does not wait for unnecessarily long generations.
         model = genai.GenerativeModel(
-            model_name="gemini-3.6-flash",
+            model_name="gemini-2.5-flash",
             system_instruction=system_instruction
         )
-        response = model.generate_content(prompt)
+        response = model.generate_content(
+            prompt,
+            generation_config={"max_output_tokens": 800},
+            request_options={"timeout": 30}
+        )
         return response.text
     except Exception as e:
         return f"🔮 The cosmos are foggy right now (API Error: {str(e)}). Please double check your Gemini API key in `backend/.env` and try again."

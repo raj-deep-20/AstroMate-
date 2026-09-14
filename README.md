@@ -19,7 +19,7 @@ AstroMate is a full-stack astrological platform powered by **Google Gemini AI**,
 
 - **Frontend**: Vite, React 18, Tailwind CSS, marked.js
 - **Backend**: FastAPI, Uvicorn, Python 3.11+
-- **AI**: Google Gemini Generative AI (`gemini-3.6-flash`)
+- **AI**: Google Gemini Generative AI (`gemini-2.5-flash`)
 - **Fonts**: Cinzel (Serif) + Inter from Google Fonts
 - **Icons**: FontAwesome 6
 

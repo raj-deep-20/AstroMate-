@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { marked } from 'marked';
-import { API_BASE_URL } from '../config';
+import { ChartNoAxesCombined, LoaderCircle, Orbit } from 'lucide-react';
+import { requestJson } from '../config';
 
 export default function BirthChartTab() {
   const [name, setName] = useState('');
@@ -20,19 +21,10 @@ export default function BirthChartTab() {
     setHasSubmitted(true);
 
     try {
-      const response = await fetch(`${API_BASE_URL}/api/birthchart`, {
+      const data = await requestJson('/api/birthchart', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ name, date, time, place })
+        body: JSON.stringify({ name: name.trim(), date, time, place: place.trim() }),
       });
-
-      if (!response.ok) {
-        throw new Error('Planetary alignment failed');
-      }
-
-      const data = await response.json();
       const htmlReading = marked.parse(data.reading);
       setReading(htmlReading);
     } catch (err) {
@@ -45,15 +37,15 @@ export default function BirthChartTab() {
   return (
     <div className="max-w-3xl mx-auto space-y-8 animate-fadeIn">
       <div className="text-center max-w-xl mx-auto space-y-2">
-        <h2 className="text-3xl font-serif text-cosmic-gold">Birth Chart Interpretation</h2>
-        <p className="text-slate-300">Enter your birth coordinates to compile a simulated Vedic & Western planetary natal profile using AI.</p>
+        <h2 className="text-3xl font-serif text-[#33256e]">Birth Chart Interpretation</h2>
+        <p className="text-slate-500">Enter your birth coordinates to compile a simulated Vedic & Western planetary natal profile using AI.</p>
       </div>
 
       <div className="grid md:grid-cols-5 gap-8 items-start">
         {/* Form Card */}
-        <form onSubmit={handleSubmit} className="md:col-span-2 space-y-4 border border-white/10 bg-white/5 backdrop-blur-md p-6 rounded-3xl">
+        <form onSubmit={handleSubmit} className="md:col-span-2 space-y-4 border border-slate-100 bg-white p-6 rounded-3xl shadow-sm">
           <div>
-            <label htmlFor="bc-name" class="block text-sm font-semibold text-slate-300 mb-1">Full Name</label>
+            <label htmlFor="bc-name" className="block text-sm font-semibold text-slate-600 mb-1">Full Name</label>
             <input 
               type="text" 
               id="bc-name" 
@@ -61,36 +53,36 @@ export default function BirthChartTab() {
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="e.g. Orion Smith" 
-              class="w-full bg-white/10 border border-white/10 focus:border-cosmic-accent focus:ring-1 focus:ring-cosmic-accent rounded-xl px-4 py-2 text-white placeholder-slate-500 outline-none transition-colors"
+              className="w-full bg-[#faf9fd] border border-slate-200 focus:border-purple-400 focus:ring-1 focus:ring-purple-300 rounded-xl px-4 py-2 text-[#17152b] placeholder-slate-400 outline-none transition-colors"
             />
           </div>
 
           <div>
-            <label htmlFor="bc-date" class="block text-sm font-semibold text-slate-300 mb-1">Birth Date</label>
+            <label htmlFor="bc-date" className="block text-sm font-semibold text-slate-600 mb-1">Birth Date</label>
             <input 
               type="date" 
               id="bc-date" 
               required 
               value={date}
               onChange={(e) => setDate(e.target.value)}
-              class="w-full bg-white/10 border border-white/10 focus:border-cosmic-accent focus:ring-1 focus:ring-cosmic-accent rounded-xl px-4 py-2 text-white outline-none transition-colors"
+              className="w-full bg-[#faf9fd] border border-slate-200 focus:border-purple-400 focus:ring-1 focus:ring-purple-300 rounded-xl px-4 py-2 text-[#17152b] outline-none transition-colors"
             />
           </div>
 
           <div>
-            <label htmlFor="bc-time" class="block text-sm font-semibold text-slate-300 mb-1">Birth Time</label>
+            <label htmlFor="bc-time" className="block text-sm font-semibold text-slate-600 mb-1">Birth Time</label>
             <input 
               type="time" 
               id="bc-time" 
               required 
               value={time}
               onChange={(e) => setTime(e.target.value)}
-              class="w-full bg-white/10 border border-white/10 focus:border-cosmic-accent focus:ring-1 focus:ring-cosmic-accent rounded-xl px-4 py-2 text-white outline-none transition-colors"
+              className="w-full bg-[#faf9fd] border border-slate-200 focus:border-purple-400 focus:ring-1 focus:ring-purple-300 rounded-xl px-4 py-2 text-[#17152b] outline-none transition-colors"
             />
           </div>
 
           <div>
-            <label htmlFor="bc-place" class="block text-sm font-semibold text-slate-300 mb-1">Birth Location</label>
+            <label htmlFor="bc-place" className="block text-sm font-semibold text-slate-600 mb-1">Birth Location</label>
             <input 
               type="text" 
               id="bc-place" 
@@ -98,38 +90,39 @@ export default function BirthChartTab() {
               value={place}
               onChange={(e) => setPlace(e.target.value)}
               placeholder="e.g. New York, USA" 
-              class="w-full bg-white/10 border border-white/10 focus:border-cosmic-accent focus:ring-1 focus:ring-cosmic-accent rounded-xl px-4 py-2 text-white placeholder-slate-500 outline-none transition-colors"
+              className="w-full bg-[#faf9fd] border border-slate-200 focus:border-purple-400 focus:ring-1 focus:ring-purple-300 rounded-xl px-4 py-2 text-[#17152b] placeholder-slate-400 outline-none transition-colors"
             />
           </div>
 
           <button 
             type="submit" 
-            class="w-full bg-gradient-to-r from-cosmic-accent to-purple-600 hover:from-pink-500 hover:to-purple-700 text-white font-serif font-semibold py-3 rounded-xl transition-all duration-300 active:scale-95 shadow-lg shadow-cosmic-accent/25 hover:shadow-cosmic-accent/40"
+            className="w-full bg-[#33256e] hover:bg-[#4a3598] text-white font-serif font-semibold py-3 rounded-xl transition-all duration-300 active:scale-95 shadow-lg shadow-purple-200/60"
           >
-            <i class="fa-solid fa-compass-drafting mr-2"></i>Cast Birth Chart
+            <ChartNoAxesCombined className="inline-block mr-2 h-4 w-4 align-[-3px]" aria-hidden="true" />
+            Cast Birth Chart
           </button>
         </form>
 
         {/* Reading Results */}
-        <div className="md:col-span-3 border border-white/10 bg-white/5 backdrop-blur-md rounded-3xl p-6 min-h-[380px] flex flex-col justify-center relative overflow-hidden">
+        <div className="md:col-span-3 border border-slate-100 bg-white rounded-3xl p-6 min-h-[380px] flex flex-col justify-center relative overflow-hidden shadow-sm">
           {/* Empty State */}
           {!hasSubmitted && (
             <div className="text-center space-y-3 py-12">
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-cosmic-gold/10 text-cosmic-gold mb-2">
-                <i className="fa-solid fa-ring text-2xl"></i>
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-amber-50 text-[#d79b2b] mb-2">
+                <Orbit className="h-8 w-8" aria-hidden="true" />
               </div>
-              <h3 className="font-serif text-xl text-white">Your Natal Map Awaits</h3>
-              <p className="text-sm text-slate-400 max-w-xs mx-auto">Provide your details to map the planetary alignments at the exact moment of your birth.</p>
+              <h3 className="font-serif text-xl text-[#17152b]">Your Natal Map Awaits</h3>
+              <p className="text-sm text-slate-500 max-w-xs mx-auto">Provide your details to map the planetary alignments at the exact moment of your birth.</p>
             </div>
           )}
 
           {/* Loading State */}
           {loading && (
             <div className="flex flex-col items-center justify-center space-y-4 py-12">
-              <i className="fa-solid fa-spinner fa-spin text-4xl text-cosmic-gold"></i>
+              <LoaderCircle className="h-10 w-10 animate-spin text-[#d79b2b]" aria-label="Loading birth chart" />
               <div className="text-center">
-                <h4 className="font-serif text-lg text-white">Configuring Celestial Houses...</h4>
-                <p className="text-xs text-slate-400 mt-1">Retrieving planetary coordinates from Gemini API</p>
+                <h4 className="font-serif text-lg text-[#17152b]">Configuring Celestial Houses...</h4>
+                <p className="text-xs text-slate-500 mt-1">Retrieving planetary coordinates from Gemini API</p>
               </div>
             </div>
           )}
@@ -144,7 +137,7 @@ export default function BirthChartTab() {
           {/* Output Display */}
           {reading && (
             <div 
-              className="prose max-w-none text-slate-200"
+              className="prose max-w-none"
               dangerouslySetInnerHTML={{ __html: reading }}
             />
           )}

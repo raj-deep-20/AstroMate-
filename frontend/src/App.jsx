@@ -1,21 +1,33 @@
-import React, { useState } from 'react';
-import StarField from './components/StarField';
+import React, { useEffect, useState } from 'react';
 import LandingPage from './components/LandingPage';
 import Dashboard from './components/Dashboard';
 
+const validRoutes = new Set(['/', '/horoscope', '/birth-chart', '/match', '/chat']);
+
+function getRoute() {
+  const route = window.location.hash.replace(/^#/, '') || '/';
+  return validRoutes.has(route) ? route : '/';
+}
+
 export default function App() {
-  const [view, setView] = useState('landing'); // 'landing' or 'dashboard'
+  const [route, setRoute] = useState(getRoute);
+
+  useEffect(() => {
+    const handleHashChange = () => setRoute(getRoute());
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
+  const navigate = (nextRoute) => {
+    window.location.hash = nextRoute;
+  };
 
   return (
     <div className="relative min-h-screen">
-      {/* Global Starfield Canvas */}
-      <StarField />
-
-      {/* Pages Container */}
-      {view === 'landing' ? (
-        <LandingPage onEnter={() => setView('dashboard')} />
+      {route === '/' ? (
+        <LandingPage onEnter={() => navigate('/horoscope')} />
       ) : (
-        <Dashboard />
+        <Dashboard route={route} onNavigate={navigate} />
       )}
     </div>
   );
