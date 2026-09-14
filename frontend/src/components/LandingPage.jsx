@@ -65,7 +65,7 @@ export default function LandingPage({ onEnter }) {
       accent: "from-pink-100 to-rose-50",
     },
     {
-      icon: "",
+      icon: "♈",
       title: "Astro Chat",
       description:
         "Ask AstroMate AI about transits, zodiac signs, destiny, and your cosmic journey.",
@@ -117,8 +117,8 @@ export default function LandingPage({ onEnter }) {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-[#191733] text-[#f6c65b] flex items-center justify-center text-xl shadow-lg">
-              <img src="/assests/logo.png" alt="AstroMate Logo" className="w-8 h-8" />
+            <div className="w-10 h-10 rounded-full bg-[#191733] text-[#f6c65b] flex items-center justify-center text-xl shadow-lg overflow-hidden">
+              <img src="/assets/logo.png" alt="AstroMate Logo" className="w-8 h-8 object-cover" />
             </div>
 
             <span className="font-serif text-2xl font-bold tracking-wide">
@@ -254,13 +254,9 @@ export default function LandingPage({ onEnter }) {
               <button
                 type="button"
                 onClick={() => document.querySelector("#features")?.scrollIntoView({ behavior: "smooth" })}
-                className="flex items-center gap-3 px-6 py-4 rounded-xl border border-slate-200 bg-white hover:border-purple-300 hover:bg-purple-50 transition-all font-medium"
+                className="flex items-center gap-3 px-6 py-3 rounded-xl border border-slate-200 bg-white hover:border-purple-300 hover:bg-purple-50 transition-all font-medium"
               >
-                <span className="w-7 h-7 rounded-full border border-slate-400 flex items-center justify-center text-xs">
-                  ▶
-                </span>
-
-                Explore Astrology
+                <i className="fa-solid fa-play" /> Explore Astrology
               </button>
             </div>
 
@@ -290,78 +286,79 @@ export default function LandingPage({ onEnter }) {
           {/* =====================================================
               HERO VISUAL
           ===================================================== */}
-          <div className="relative flex justify-center">
-            {/* Glow */}
-            <div className="absolute inset-0 bg-purple-300/30 blur-[100px] rounded-full" />
+          <div className="w-full px-4 py-8 flex justify-center">
+            <div className="relative flex justify-center w-full max-w-[540px]">
+              {/* Glow */}
+              <div className="absolute inset-0 bg-purple-300/30 blur-[60px] sm:blur-[100px] rounded-full" />
 
-            {/* Main Card */}
-            <div className="relative w-full max-w-[540px] aspect-square rounded-[40px] bg-gradient-to-br from-[#17142f] via-[#242050] to-[#47306f] shadow-2xl overflow-hidden border border-white/10">
-              {/* Stars */}
-              <div className="absolute inset-0 opacity-70">
-                {[...Array(40)].map((_, index) => (
-                  <span
-                    key={index}
-                    className="absolute text-white text-xs animate-pulse"
-                    style={{
-                      left: `${(index * 37) % 95}%`,
-                      top: `${(index * 53) % 95}%`,
-                      animationDelay: `${index * 0.1}s`,
-                    }}
-                  >
-                    ✦
-                  </span>
-                ))}
-              </div>
-
-              {/* Orbit Rings */}
-              <div className="absolute inset-10 border border-amber-300/30 rounded-full" />
-              <div className="absolute inset-20 border border-purple-300/30 rounded-full" />
-              <div className="absolute inset-32 border border-pink-300/30 rounded-full" />
-
-              {/* Zodiac Circle */}
-              <div className="absolute inset-[17%] rounded-full border border-[#f4c75f]/50 bg-[#101027]/70 backdrop-blur-xl flex items-center justify-center shadow-2xl">
-                <div className="absolute inset-5 rounded-full border border-[#f4c75f]/30" />
-
-                <div className="absolute inset-14 rounded-full border border-[#f4c75f]/20" />
-
-                {/* Zodiac Signs */}
-                <div className="absolute top-5 text-[#f4c75f] text-xl">♈</div>
-                <div className="absolute top-12 right-12 text-[#f4c75f] text-xl">
-                  ♉
-                </div>
-                <div className="absolute right-5 text-[#f4c75f] text-xl">♊</div>
-                <div className="absolute bottom-12 right-12 text-[#f4c75f] text-xl">
-                  ♋
-                </div>
-                <div className="absolute bottom-5 text-[#f4c75f] text-xl">♌</div>
-                <div className="absolute bottom-12 left-12 text-[#f4c75f] text-xl">
-                  ♍
-                </div>
-                <div className="absolute left-5 text-[#f4c75f] text-xl">♎</div>
-                <div className="absolute top-12 left-12 text-[#f4c75f] text-xl">
-                  ♏
+              {/* Main Card */}
+              <div className="relative w-full aspect-square rounded-[24px] sm:rounded-[40px] bg-gradient-to-br from-[#17142f] via-[#242050] to-[#47306f] shadow-2xl overflow-hidden border border-white/10">
+                {/* Stars */}
+                <div className="absolute inset-0 opacity-70">
+                  {[...Array(40)].map((_, index) => (
+                    <span
+                      key={index}
+                      className="absolute text-white text-[10px] sm:text-xs animate-pulse"
+                      style={{
+                        left: `${(index * 37) % 95}%`,
+                        top: `${(index * 53) % 95}%`,
+                        animationDelay: `${index * 0.1}s`,
+                      }}
+                    >
+                      ✦
+                    </span>
+                  ))}
                 </div>
 
-                {/* Sun */}
-                <div className="relative w-32 h-32 rounded-full bg-gradient-to-br from-[#ffd978] via-[#f5b93f] to-[#db7f27] shadow-[0_0_80px_rgba(255,194,73,0.7)] flex items-center justify-center">
-                  <div className="w-24 h-24 rounded-full border border-white/30 flex items-center justify-center">
-                    <span className="text-5xl">☀</span>
+                {/* Orbit Rings */}
+                <div className="absolute inset-4 sm:inset-10 border border-amber-300/30 rounded-full" />
+                <div className="absolute inset-10 sm:inset-20 border border-purple-300/30 rounded-full" />
+                <div className="absolute inset-16 sm:inset-32 border border-pink-300/30 rounded-full" />
+
+                {/* Zodiac Circle */}
+                <div className="absolute inset-[12%] sm:inset-[17%] rounded-full border border-[#f4c75f]/50 bg-[#101027]/70 backdrop-blur-xl flex items-center justify-center shadow-2xl">
+                  <div className="absolute inset-2 sm:inset-5 rounded-full border border-[#f4c75f]/30" />
+                  <div className="absolute inset-6 sm:inset-14 rounded-full border border-[#f4c75f]/20" />
+
+                  {/* Zodiac Signs */}
+                  <div className="absolute top-2 sm:top-5 text-[#f4c75f] text-base sm:text-xl">♈</div>
+                  <div className="absolute top-6 right-6 sm:top-12 sm:right-12 text-[#f4c75f] text-base sm:text-xl">
+                    ♉
+                  </div>
+                  <div className="absolute right-2 sm:right-5 text-[#f4c75f] text-base sm:text-xl">♊</div>
+                  <div className="absolute bottom-6 right-6 sm:bottom-12 sm:right-12 text-[#f4c75f] text-base sm:text-xl">
+                    ♋
+                  </div>
+                  <div className="absolute bottom-2 sm:bottom-5 text-[#f4c75f] text-base sm:text-xl">♌</div>
+                  <div className="absolute bottom-6 left-6 sm:bottom-12 sm:left-12 text-[#f4c75f] text-base sm:text-xl">
+                    ♍
+                  </div>
+                  <div className="absolute left-2 sm:left-5 text-[#f4c75f] text-base sm:text-xl">♎</div>
+                  <div className="absolute top-6 left-6 sm:top-12 sm:left-12 text-[#f4c75f] text-base sm:text-xl">
+                    ♏
+                  </div>
+
+                  {/* Sun */}
+                  <div className="relative w-20 h-20 sm:w-32 sm:h-32 rounded-full bg-gradient-to-br from-[#ffd978] via-[#f5b93f] to-[#db7f27] shadow-[0_0_40px_rgba(255,194,73,0.7)] sm:shadow-[0_0_80px_rgba(255,194,73,0.7)] flex items-center justify-center">
+                    <div className="w-14 h-14 sm:w-24 sm:h-24 rounded-full border border-white/30 flex items-center justify-center">
+                      <span className="text-3xl sm:text-5xl">☀</span>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              {/* Floating Planets */}
-              <div className="absolute top-10 right-8 w-20 h-20 rounded-full bg-gradient-to-br from-pink-200 to-purple-500 shadow-xl" />
+                {/* Floating Planets */}
+                <div className="absolute top-4 right-4 sm:top-10 sm:right-8 w-10 h-10 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-pink-200 to-purple-500 shadow-xl" />
 
-              <div className="absolute bottom-14 left-8 w-12 h-12 rounded-full bg-gradient-to-br from-amber-200 to-orange-400 shadow-xl" />
+                <div className="absolute bottom-6 left-4 sm:bottom-14 sm:left-8 w-7 h-7 sm:w-12 sm:h-12 rounded-full bg-gradient-to-br from-amber-200 to-orange-400 shadow-xl" />
 
-              {/* AI Label */}
-              <div className="absolute bottom-8 right-8 px-4 py-3 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 text-white">
-                <p className="text-[10px] uppercase tracking-widest text-purple-200">
-                  Powered By
-                </p>
+                {/* AI Label */}
+                <div className="absolute bottom-3 right-3 sm:bottom-8 sm:right-8 px-2.5 py-1.5 sm:px-4 sm:py-3 rounded-lg sm:rounded-xl bg-white/10 backdrop-blur-md border border-white/20 text-white">
+                  <p className="text-[8px] sm:text-[10px] uppercase tracking-widest text-purple-200">
+                    Powered By
+                  </p>
 
-                <p className="font-semibold text-sm mt-1">AI + Astrology ✦</p>
+                  <p className="font-semibold text-xs sm:text-sm mt-0.5 sm:mt-1">AI + Astrology ✦</p>
+                </div>
               </div>
             </div>
           </div>
