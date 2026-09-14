@@ -69,7 +69,7 @@ def generate_gemini_content(prompt: str, system_instruction: str = None) -> str:
     try:
         # Keep responses bounded so the UI does not wait for unnecessarily long generations.
         model = genai.GenerativeModel(
-            model_name="gemini-2.5-flash",
+            model_name="gemini-3.6-flash",
             system_instruction=system_instruction
         )
         response = model.generate_content(
