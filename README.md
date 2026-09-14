@@ -158,24 +158,16 @@ This diagram shows how the product moves from user intent to AI-generated insigh
 
 ## Screenshots
 
-The following sections are ideal places for product captures as the app evolves.
-
 ### Landing Page
 
-![Landing page screenshot placeholder](docs/screenshots/landing-page.png)
-
-> Add a hero/marketing screenshot showing the cosmic landing section, navigation, and CTA.
-
-### Dashboard Experience
-
-![Dashboard screenshot placeholder](docs/screenshots/dashboard.png)
-
+<img width="991" height="107" alt="image" src="https://github.com/user-attachments/assets/721698e0-5a3e-4936-b340-a478b44eaaf1" />
 
 ---
 
 ## Functional Workflow
 
 ### 1. Landing Experience
+
 The user visits the landing screen first. The landing page presents the product narrative, theme, trust elements, and entry actions. It is designed to create a premium, mystical, high-trust first impression.
 
 ### 2. Dashboard Entry
