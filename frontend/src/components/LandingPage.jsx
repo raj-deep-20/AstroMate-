@@ -117,7 +117,7 @@ export default function LandingPage({ onEnter }) {
           {/* Logo */}
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-full bg-[#191733] text-[#f6c65b] flex items-center justify-center text-xl shadow-lg">
-              ✦
+              <img src="/assests/logo.png" alt="AstroMate Logo" className="w-8 h-8" />
             </div>
 
             <span className="font-serif text-2xl font-bold tracking-wide">

@@ -33,9 +33,9 @@ export default function Dashboard({ route, onNavigate }) {
   return (
     <div className="relative z-10 min-h-screen flex flex-col px-4 py-6 md:px-8 max-w-6xl mx-auto animate-fadeIn text-[#17152b]">
       {/* Header */}
-      <header className="flex items-center justify-between gap-4 py-3 md:py-5">
+      <header className="flex items-center justify-between gap-4 py-1 md:py-5">
         <button type="button" onClick={() => onNavigate('/')} className="flex items-center gap-3 text-left">
-          <span className="w-10 h-10 rounded-full bg-[#191733] text-[#f6c65b] flex items-center justify-center text-xl shadow-lg">✦</span>
+          <div className="w-10 h-10 rounded-full bg-[#191733] text-[#f6c65b] flex items-center justify-center text-xl shadow-lg"><img src="/assests/logo.png" alt="AstroMate Logo" className="w-8 h-8" /></div>
           <span className="font-serif text-2xl font-bold tracking-wide">AstroMate</span>
         </button>
         <div className="inline-flex items-center space-x-2 border border-purple-100 bg-white px-4 py-1.5 rounded-full text-xs text-purple-700 tracking-wide uppercase font-semibold mb-3 shadow-sm">
