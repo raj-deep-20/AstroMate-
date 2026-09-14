@@ -87,6 +87,19 @@ textarea:focus-visible {
 }
 
 /* Markdown prose output styles */
+.prose {
+  max-width: 100%;
+  width: 100%;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  white-space: normal;
+}
+
+.prose > *:first-child {
+  margin-top: 0;
+}
+
 .prose h1, .prose h2, .prose h3 {
   font-family: 'Cinzel', serif;
   color: #33256e;
@@ -99,24 +112,28 @@ textarea:focus-visible {
 .prose h3 { font-size: 1.1rem; }
 .prose p {
   margin-bottom: 0.75rem;
-  line-height: 1.6;
+  line-height: 1.7;
+  color: #475569;
+}
+.prose ul,
+.prose ol {
+  list-style-position: outside;
+  padding-left: 1.25rem;
+  margin-bottom: 0.75rem;
   color: #475569;
 }
 .prose ul {
-  list-style-type: none;
-  padding-left: 0;
-  margin-bottom: 0.75rem;
+  list-style-type: disc;
+}
+.prose ol {
+  list-style-type: decimal;
 }
 .prose li {
-  margin-bottom: 0.4rem;
-  padding-left: 1.5rem;
-  position: relative;
+  margin-bottom: 0.45rem;
+  line-height: 1.6;
 }
-.prose li::before {
-  content: "✦";
+.prose li::marker {
   color: #7c4db8;
-  position: absolute;
-  left: 0;
 }
 .prose strong {
   color: #17152b;
@@ -124,4 +141,35 @@ textarea:focus-visible {
 }
 .prose em {
   color: #7c4db8;
+}
+.prose blockquote {
+  border-left: 3px solid rgba(124, 77, 184, 0.45);
+  padding-left: 0.9rem;
+  color: #4b5563;
+  margin: 1rem 0;
+}
+.prose hr {
+  border: 0;
+  border-top: 1px solid #e2e8f0;
+  margin: 1rem 0;
+}
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  overflow-x: auto;
+  display: block;
+}
+.prose th, .prose td {
+  border: 1px solid #e2e8f0;
+  padding: 0.6rem 0.75rem;
+  text-align: left;
+  vertical-align: top;
+}
+.prose code {
+  background: #f5f3ff;
+  color: #2d1b69;
+  border-radius: 0.3rem;
+  padding: 0.08rem 0.35rem;
+  font-size: 0.9em;
 }

@@ -129,7 +129,7 @@ export default function MatchTab() {
 
       {/* Results Output */}
       {hasSubmitted && (
-        <div className="border border-slate-100 bg-white rounded-3xl p-6 sm:p-8 relative overflow-hidden shadow-sm">
+        <div className="border border-slate-100 bg-white rounded-3xl p-6 sm:p-8 relative overflow-hidden shadow-sm min-w-0">
           {/* Loading Screen */}
           {loading && (
             <div className="flex flex-col items-center justify-center py-12 space-y-3">

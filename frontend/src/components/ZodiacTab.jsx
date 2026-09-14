@@ -71,7 +71,7 @@ export default function ZodiacTab() {
 
       {/* Result Output */}
       {selectedSign && (
-        <div className="max-w-3xl mx-auto border border-slate-100 bg-white rounded-3xl p-6 sm:p-8 space-y-6 relative overflow-hidden shadow-sm">
+        <div className="max-w-3xl mx-auto border border-slate-100 bg-white rounded-3xl p-6 sm:p-8 space-y-6 relative overflow-hidden shadow-sm min-w-0">
           <div className="absolute -right-16 -top-16 w-32 h-32 bg-purple-200/40 rounded-full blur-3xl pointer-events-none"></div>
           <div className="absolute -left-16 -bottom-16 w-32 h-32 bg-amber-100/70 rounded-full blur-3xl pointer-events-none"></div>
 

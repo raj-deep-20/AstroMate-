@@ -104,7 +104,7 @@ export default function BirthChartTab() {
         </form>
 
         {/* Reading Results */}
-        <div className="md:col-span-3 border border-slate-100 bg-white rounded-3xl p-6 min-h-[380px] flex flex-col justify-center relative overflow-hidden shadow-sm">
+        <div className="md:col-span-3 border border-slate-100 bg-white rounded-3xl p-6 min-h-[380px] flex flex-col justify-center relative overflow-hidden shadow-sm min-w-0">
           {/* Empty State */}
           {!hasSubmitted && (
             <div className="text-center space-y-3 py-12">
