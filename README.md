@@ -158,10 +158,6 @@ This diagram shows how the product moves from user intent to AI-generated insigh
 
 ## Screenshots
 
-### Landing Page
-
-<img width="991" height="107" alt="image" src="https://github.com/user-attachments/assets/721698e0-5a3e-4936-b340-a478b44eaaf1" />
-
 ---
 
 ## Functional Workflow
