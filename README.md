@@ -170,19 +170,6 @@ The following sections are ideal places for product captures as the app evolves.
 
 ![Dashboard screenshot placeholder](docs/screenshots/dashboard.png)
 
-> Add a screenshot of the tabbed dashboard with the active horoscope or birth-chart workflow.
-
-### Horoscope / Insight Output
-
-![Horoscope output screenshot placeholder](docs/screenshots/horoscope-output.png)
-
-> Add a screenshot of a generated horoscope or AI reading in markdown/card format.
-
-### Astro Chat
-
-![Astro chat screenshot placeholder](docs/screenshots/chat.png)
-
-> Add a screenshot of the conversational AI experience.
 
 ---
 
